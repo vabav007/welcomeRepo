@@ -1,4 +1,4 @@
-package com.example.employeeTDD.demo.ServiceTest;
+package com.example.employeeTDD.demo.Service;
 
 import com.example.employeeTDD.demo.Entity.Employee;
 import com.example.employeeTDD.demo.Repository.EmployeeRepository;

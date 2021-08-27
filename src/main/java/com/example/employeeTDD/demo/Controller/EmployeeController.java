@@ -2,7 +2,7 @@ package com.example.employeeTDD.demo.Controller;
 
 import com.example.employeeTDD.demo.Entity.Employee;
 import com.example.employeeTDD.demo.Exception.EmployeeNotFoundException;
-import com.example.employeeTDD.demo.ServiceTest.EmployeeService;
+import com.example.employeeTDD.demo.Service.EmployeeService;
 import org.apache.velocity.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
