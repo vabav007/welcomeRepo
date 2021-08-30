@@ -20,7 +20,7 @@ public class CreateEmployee {
                     });
         When("^we have entered the required employee information$", () -> {
         });
-        
+
         Then("^the employee record is saved in the database$", () -> {
         });
     }

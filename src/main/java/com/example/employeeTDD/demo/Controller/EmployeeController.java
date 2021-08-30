@@ -19,7 +19,7 @@ public class EmployeeController {
     @Autowired
     public void setEmployeeService(EmployeeService employeeService) { this.employeeService = employeeService; }
 
-    @PostMapping("/create")
+    @PostMapping("/POST/create/")
     public @ResponseBody
     Employee createEmployee(@RequestBody Employee employee) {
         return employeeService.save(employee);

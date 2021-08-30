@@ -134,6 +134,12 @@
 			<version>6.11.0</version>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-junit</artifactId>
+			<version>1.2.5</version>
+		</dependency>
 		<dependency>
 			<groupId>com.example.employeeTDD</groupId>
 			<artifactId>demo</artifactId>
