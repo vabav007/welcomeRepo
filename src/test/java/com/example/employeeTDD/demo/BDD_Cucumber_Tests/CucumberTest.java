@@ -8,7 +8,6 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         plugin = {"pretty"},
-        snippets = SnippetType.CAMELCASE,
         features = {"classpath:features"}
 )
 public class CucumberTest {
