@@ -19,7 +19,7 @@ public class EmployeeController {
     @Autowired
     public void setEmployeeService(EmployeeService employeeService) { this.employeeService = employeeService; }
 
-    @PostMapping("/POST/create/")
+    @PostMapping("/employee")
     public @ResponseBody
     Employee createEmployee(@RequestBody Employee employee) {
         return employeeService.save(employee);
@@ -39,18 +39,18 @@ public class EmployeeController {
         return ResponseEntity.ok(updatedEmployee);
     }
 
-    @GetMapping("/getEmployee/{id}")
+    @GetMapping("/employee/{id}")
     public Employee getEmployee(@PathVariable int id) {
         return employeeService.findById(id)
                 .orElseThrow(() -> new EmployeeNotFoundException("no employee available."));
     }
 
-    @GetMapping("/getEmployee")
+    @GetMapping("/employee")
     public List<Employee> getAllEmployee() {
         return employeeService.getAllEmployees();
     }
 
-    @DeleteMapping("/deleteEmployee/{id}")
+    @DeleteMapping("/employee/{id}")
     public void deleteEmployee(@PathVariable int id) {
         employeeService.deleteEmployee(id);
     }

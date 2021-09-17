@@ -6,13 +6,12 @@ import com.example.employeeTDD.demo.Entity.Employee;
 import com.example.employeeTDD.demo.Service.EmployeeService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-//import org.assertj.core.util.Arrays;
+import lombok.Data;
 import org.junit.Before;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-//import org.mockito.InjectMocks;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
@@ -32,13 +31,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-//import static org.hamcrest.Matchers.*;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(EmployeeController.class)
+@Data
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class EmployeeControllerTest {
@@ -71,14 +70,14 @@ public class EmployeeControllerTest {
 
         // simulate the form submit (POST)
         mockMvc
-                .perform(post("/POST/create", employee1))
+                .perform(post("/employee", employee1))
                 .andExpect(status().isOk())
                 .andReturn();
     }
 
 
     @Test
-    @DisplayName("POST /create/1 - Found")
+    @DisplayName("create test")
     @Disabled
     public void testCreateEmployee() throws Exception {
 
@@ -86,7 +85,7 @@ public class EmployeeControllerTest {
 
         String inputInJson = this.mapToJson(employee); //JSON Mapper
         when(service.save(employee)).thenReturn(employee);
-        RequestBuilder requestBuilder = post("/POST/create")
+        RequestBuilder requestBuilder = post("/employee")
                 .accept(MediaType.APPLICATION_JSON).content(inputInJson)
                 .contentType(MediaType.APPLICATION_JSON);
 
@@ -138,7 +137,7 @@ public class EmployeeControllerTest {
         empList.add(e3);
         when(service.getAllEmployees()).thenReturn(empList);
         RequestBuilder requestBuilder = MockMvcRequestBuilders
-                .get("/getAllEmployees");
+                .get("/employee");
         MvcResult   mvcResult = mockMvc.perform(requestBuilder).andReturn();
 
         Assertions.assertEquals(this.mapToJson(empList),mvcResult.getResponse().getContentAsString());
@@ -154,7 +153,7 @@ public class EmployeeControllerTest {
         when(service.findById(1).isPresent()).thenReturn(Boolean.valueOf(employee.toString())); // when-thenReturn logic check for the thenReturn part
 
         RequestBuilder requestBuilder = MockMvcRequestBuilders
-                .get("/getEmployee/{id}"+1); //check syntax
+                .get("/employee/{id}"+1); //check syntax
         MvcResult   mvcResult = mockMvc.perform(requestBuilder).andReturn();
 
         Assertions.assertEquals(this.mapToJson(employee), mvcResult.getResponse().getContentAsString());
@@ -164,7 +163,7 @@ public class EmployeeControllerTest {
     public void testDeleteEmployee() throws Exception {
         int id = 1;
         RequestBuilder requestBuilder = MockMvcRequestBuilders
-                .delete("/delete/"+id);
+                .delete("/employee/"+id);
         mockMvc.perform(requestBuilder).andReturn();
         Assertions.assertNull(requestBuilder.toString());
     }
